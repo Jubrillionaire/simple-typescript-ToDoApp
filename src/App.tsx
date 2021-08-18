@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import AddTodo from './components/AddTodo';
+import Todos from './components/Todos';
+import {Itodo} from './Interfaces'
 
-function App() {
+const App = () =>   {
+
+  const [todos, setTodos] = useState<Itodo[]>([
+    { title: "walk dog", id: 1 },
+    { title: "sleep later", id: 2 },
+  ]);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AddTodo />
+    { todos.length > 0 ? <Todos  /> : <p> nothing to do </p> }
     </div>
   );
 }
